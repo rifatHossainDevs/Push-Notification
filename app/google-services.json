@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1049413770750",
+    "project_id": "push-notification-bc06f",
+    "storage_bucket": "push-notification-bc06f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049413770750:android:a87d16c33d7f4b65faf4af",
+        "android_client_info": {
+          "package_name": "com.epsports.pushnotification"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFdv4iUiOew_kD5T53Rf1slx3BbAclU8o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
