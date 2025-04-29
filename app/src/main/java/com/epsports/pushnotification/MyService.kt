@@ -3,11 +3,10 @@ package com.epsports.pushnotification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.app.Service
 import android.content.Intent
 import android.os.Build
-import android.os.IBinder
 import android.util.Log
+import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -45,10 +44,21 @@ class MyService : FirebaseMessagingService() {
 
         val pendingIntent = PendingIntent.getActivity(
             this@MyService,
-            0,
+            0, //request code
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
         )
+
+
+        val customView = RemoteViews(packageName, R.layout.custom_notification).apply {
+            setTextViewText(R.id.title, title)
+            setTextViewText(R.id.body, body)
+        }
+
+        val customBigView = RemoteViews(packageName, R.layout.custom_notification).apply {
+            setTextViewText(R.id.title, title)
+            setTextViewText(R.id.body, body)
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             channel = NotificationChannel(channelId, channelId, NotificationManager.IMPORTANCE_HIGH)
@@ -60,6 +70,12 @@ class MyService : FirebaseMessagingService() {
                 .setSmallIcon(R.drawable.baseline_notifications_none_24)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
+                .setColor(resources.getColor(R.color.black))
+                .setSubText("sub text")
+                .setStyle(NotificationCompat.BigTextStyle().bigText(body))
+                .setCustomContentView(customView)
+                .setCustomBigContentView(customBigView)
+
         } else {
             builder = NotificationCompat.Builder(this@MyService)
                 .setContentTitle(title)
