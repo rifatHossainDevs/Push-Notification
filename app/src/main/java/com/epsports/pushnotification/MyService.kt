@@ -75,7 +75,6 @@ class MyService : FirebaseMessagingService() {
                 .setStyle(NotificationCompat.BigTextStyle().bigText(body))
                 .setCustomContentView(customView)
                 .setCustomBigContentView(customBigView)
-
         } else {
             builder = NotificationCompat.Builder(this@MyService)
                 .setContentTitle(title)
@@ -89,4 +88,5 @@ class MyService : FirebaseMessagingService() {
         manager.notify(id, builder.build())
 
     }
+
 }
